@@ -10,9 +10,10 @@ import { Posts } from './pages/posts/posts';
 import { Service } from './pages/service/service';
 import { SinglePost } from './pages/single-post/single-post';
 import { FormsModule } from '@angular/forms';
+import { Pages } from './pages/pages';
 
 @NgModule({
-  declarations: [App, Navbar, Footer, Index, Posts, Service, SinglePost],
+  declarations: [App, Navbar, Footer, Index, Posts, Service, SinglePost, Pages],
   imports: [BrowserModule, AppRoutingModule, FormsModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
