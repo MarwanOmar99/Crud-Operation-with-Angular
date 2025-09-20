@@ -1,0 +1,101 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 d-flex justify-content-between my-3">
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      <button
+        type="button"
+        class="btn btn-outline-success"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
+        Add Post
+      </button>
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Add Post</h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="form-control">
+                <div [innerHTML]="alerts"></div>
+                ID :
+                <input
+                  type="text"
+                  name="id"
+                  class="form-control my-2"
+                  placeholder="Add Id"
+                  [(ngModel)]="id"
+                />
+                Title :
+                <input
+                  type="text"
+                  name="title"
+                  class="form-control my-2"
+                  placeholder="Add Title"
+                  [(ngModel)]="title"
+                />
+                Body :
+                <textarea
+                  type="text"
+                  name="body"
+                  class="form-control my-2"
+                  placeholder="Add post"
+                  rows="5"
+                  [(ngModel)]="body"
+                ></textarea>
+              </div>
+            </div>
+            <div class="modal-footer justify-content-around">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" (click)="handelAddPost()">
+                Add Post
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button type="button" class="btn btn-primary position-relative">
+        Post
+        <span
+          class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+        >
+          {{ posts.length }}
+          <span class="visually-hidden">unread messages</span>
+        </span>
+      </button>
+    </div>
+    @for (item of posts ; track $index ) {
+    <div class="col-lg-4 col-md-6 g-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.title }}</h5>
+          <p class="card-text"></p>
+          <div class="d-flex justify-content-between">
+            <a routerLink="/posts/{{ item.id }}" class="card-link">Read More</a>
+            <button class="btn btn-outline-danger" (click)="handleDeletePost($index)">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 col-sm-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">{{ singlePost.title }}</h5>
+          <p class="card-text">{{ singlePost.body }}</p>
+          <a routerLink="/posts" class="card-link">Back</a>
+          <div class="d-flex justify-content-around">
+            <button
+              type="button"
+              class="btn btn-outline-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              Edit Post
+            </button>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edite Post</h1>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div [innerHTML]="alerts"></div>
+                    <div class="form-control">
+                      Title :
+                      <input
+                        type="text"
+                        name="title"
+                        class="form-control my-2"
+                        placeholder="Add Title"
+                        [(ngModel)]="singlePost.title"
+                      />
+                      Body :
+                      <textarea
+                        type="text"
+                        name="body"
+                        class="form-control my-2"
+                        placeholder="Add post"
+                        rows="5"
+                        [(ngModel)]="singlePost.body"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="modal-footer justify-content-around">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                      Close
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      (click)="handelEditePost(singlePost.id)"
+                    >
+                      Edit Post
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn btn-outline-danger" (click)="handleDeletePost(singlePost.id)">
+              Delete Post
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
